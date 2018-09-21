@@ -34,3 +34,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+PlayerEmotionTest/Assets/Affdex/
+PlayerEmotionTest/Assets/Affdex.meta
+PlayerEmotionTest/Assets/StreamingAssets.meta
+PlayerEmotionTest/Assets/StreamingAssets/
