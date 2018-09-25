@@ -1,7 +1,9 @@
 ﻿using Affdex;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEmotions : ImageResultsListener
 {
@@ -12,6 +14,10 @@ public class PlayerEmotions : ImageResultsListener
     public float currentAnger;
     public float currentFear;
     public FeaturePoint[] featurePointsList;
+
+    public GameObject EmotionSmile;
+    public GameObject EmotionAnger;
+    public GameObject EmotionFear;
 
     public override void onFaceFound(float timestamp, int faceId)
     {
@@ -41,14 +47,19 @@ public class PlayerEmotions : ImageResultsListener
             //Retrieve the Smile Score
             face.Expressions.TryGetValue(Expressions.Smile, out currentSmile);
 
-
             //Retrieve the Interocular distance, the distance between two outer eye corners.
             currentInterocularDistance = face.Measurements.interOcularDistance;
 
 
             //Retrieve the coordinates of the facial landmarks (face feature points)
             featurePointsList = face.FeaturePoints;
-
+            EmotionTextUpdate(currentAnger, currentFear, currentSmile);
         }
+    }
+
+    public void EmotionTextUpdate(float Anger, float Fear, float Smile){
+        EmotionAnger.GetComponent<Text>().text = "Anger: " + Anger.ToString();
+        EmotionFear.GetComponent<Text>().text = "Fear: " + Fear.ToString();
+        EmotionSmile.GetComponent<Text>().text = "Smile: " + Smile.ToString();
     }
 }
